@@ -1,15 +1,26 @@
 def add_student(name, age, grade):
-    file = open("students.txt", "a")
-    file.write(f"{name}, {age}, {grade}\n")
-    file.close()
+    with open("students.txt", "a") as file:
+        file.write(f"{name}, {age}, {grade}\n")
+   
 
 def display_students():
-    pass
+    with open("students.txt", "r") as file:
+        for line in file:
+            print(line.strip())
 
-def find_student(student):
-    pass
+def find_student(name):
+    with open("students.txt", "r") as file:
+        for line in file.readlines():
+            #print (line)
+            lin = line.strip().split(",")
+            if lin[0] == name:
+                return {"name":lin[0],"age":lin[1],"grade":lin[2]}
+        
+        return None
 
-name = input("Enter name: ")
-age = input("Enter age: ")
-grade = input("Enter grade: ")
-add_student(name, age, grade)
+#name = input("Enter name: ")
+#age = input("Enter age: ")
+#grade = input("Enter grade: ")
+#add_student("Amy", "12", "C")
+#display_students()
+print (find_student("Bill"))
