@@ -12,8 +12,9 @@ def test_sub():
    
 def test_div():
     assert div(10,2) == 5
-    assert div(2,0) == 0
     assert div(2,1) == 2
+    with pytest.raises(ZeroDivisionError): 
+        div(2,0)
   
 def test_mult():
     assert mult(10,1) == 10
